@@ -1,0 +1,13 @@
+browser: CHROME
+#browser: FIREFOX
+#browser: IE
+#browser: EDGE
+
+environments:
+  env_int:
+    active: true
+    appUrl: http://automationpractice.com/
+  env_test:
+    active: false
+    appUrl: http://automationpractice.com/
+

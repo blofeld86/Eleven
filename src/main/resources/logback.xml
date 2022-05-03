@@ -1,0 +1,28 @@
+<configuration scan = "true">
+    <property name = "DEV_HOME" value="${user.dir}/log/"/>
+    <timestamp key = "bySecond" dattePattern = "yyyyMMdd'T'HHmmss"/>
+    <appender name = "STDOUT" class = "ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <layout class = "ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %boldBlue(%-5level) - %boldGreen(%msg%n)
+            </pattern>
+        </layout>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEV_HOME}/timeBasedLogFile_${bySecond}.log</file>
+        <append>false</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${DEV_HOME}/timeBasedLogFile_%d{yyyy-MM-dd_HH:mm:ss}.zip</fileNamePattern>
+            <maxHistory>3</maxHistory>
+            <totalSizeCap>30KB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level = "info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
