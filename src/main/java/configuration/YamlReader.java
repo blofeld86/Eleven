@@ -14,6 +14,22 @@ import java.util.Map;
 
 public class YamlReader {
 
+    private static YamlReader instance;;
+
+    private YamlReader(){
+        if(instance != null) {
+            throw new RuntimeException("Not allowed. Please use getInstance() method");
+        }
+        setPropertiesFromYamlEnvironment();
+    }
+
+    public static YamlReader getInstance() {
+        if( instance ==  null){
+            return instance = new YamlReader();
+        }
+        return instance;
+    }
+
     private static final Logger logger = LoggerFactory.getLogger("YamlReader.class");
 
     public static Pojo getProperties(){

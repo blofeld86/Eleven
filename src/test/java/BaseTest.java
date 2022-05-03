@@ -1,4 +1,5 @@
 import configuration.DriverFactory;
+import configuration.YamlReader;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +16,7 @@ public class BaseTest {
     protected WebDriver driver;
 
     @BeforeAll
-    static void beforeAll() { setPropertiesFromYamlEnvironment();}
+    static void beforeAll() { YamlReader.getInstance();}
 
     @BeforeEach
     void setUp() {
