@@ -1,30 +1,27 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import page.objects.BlousesPage;
 import page.objects.LandingPage;
-import static org.assertj.core.api.Assertions.assertThat;
-import static page.objects.BlousesPage.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static page.objects.BlousesPage.getBigImgSrcList;
+import static page.objects.BlousesPage.getLittleSrcList;
 
 public class QuickViewTest extends BaseTest{
 
     @DisplayName("Verification of the mouse hover")
     @Test
-    void One() throws InterruptedException {
+    void One() {
         LandingPage landingPage = new LandingPage(driver);
         landingPage
-                   .shouldOpenBlousesSubCategory()
-                   .shouldMoveToImage()
-                   .shouldOpenQuickViewWindow()
-                   .shouldIterateThroughImages();
-
+                   .openBlousesSubCategory()
+                   .moveToImage()
+                   .openQuickViewWindow()
+                   .iterateThroughImages();
         assertThat(getBigImgSrcList())
-                                      .isEqualTo(getLittleListSrcList())
-                                      .isNotNull()
                                       .isNotEmpty()
-                                      .hasSize(3);
-        Thread.sleep(1500);
+                                      .hasSize(new BlousesPage(driver).getLittleImgListSize())
+                                      .isEqualTo(getLittleSrcList());
     }
 
 }

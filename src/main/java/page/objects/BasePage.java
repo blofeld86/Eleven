@@ -8,7 +8,6 @@ import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.events.internal.EventFiringMouse;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 public class BasePage {
 
@@ -27,6 +25,7 @@ public class BasePage {
     protected WebDriverWait wait;
     protected WebListener listener;
     protected JavascriptExecutor jse;
+
 
 
     public BasePage(WebDriver driver) {

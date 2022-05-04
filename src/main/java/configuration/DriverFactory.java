@@ -1,6 +1,7 @@
 package configuration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,9 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static configuration.YamlReader.*;
 
+@Slf4j
 public class DriverFactory {
-
-    private static final Logger logger = LoggerFactory.getLogger("DriverFactory.class");
 
     public WebDriver getDriver(Browser browser){
         WebDriver driver = null;
@@ -25,7 +25,7 @@ public class DriverFactory {
                 default: driver = getIEDriverAndProperties();
             }
         }catch (NullPointerException e){
-            logger.error("Please select the browser correctly");
+            log.error("Please select the browser correctly");
         }
         return driver;
     }
@@ -33,7 +33,7 @@ public class DriverFactory {
     public Browser getBrowserFromYaml(){ return Browser.valueOf(getProperties().getBrowser());}
 
     private WebDriver getChromeDriverAndProperties(){
-        logger.info("Successfully chosen chrome browser");
+        log.info("Successfully chosen chrome browser");
         ChromeOptions chromeOptions = new ChromeOptions();
         WebDriverManager.chromedriver().setup();
         chromeOptions.addArguments("start-maximized");
@@ -41,7 +41,7 @@ public class DriverFactory {
     }
 
     private WebDriver getFirefoxDriverAndProperties(){
-        logger.info("Successfully chosen firefox browser");
+        log.info("Successfully chosen firefox browser");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         WebDriverManager.firefoxdriver().setup();
         firefoxOptions.addArguments("start-maximized");
@@ -49,7 +49,7 @@ public class DriverFactory {
     }
 
     private WebDriver getIEDriverAndProperties(){
-        logger.info("Successfully chosen IE browser");
+        log.info("Successfully chosen IE browser");
         InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
         WebDriverManager.iedriver().setup();
         return new InternetExplorerDriver(internetExplorerOptions);

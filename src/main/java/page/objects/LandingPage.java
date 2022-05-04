@@ -1,10 +1,11 @@
 package page.objects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
+@Slf4j
 public class LandingPage extends BasePage{
 
     @FindBy(css = "a[title='Women']")
@@ -15,10 +16,11 @@ public class LandingPage extends BasePage{
 
     public LandingPage(WebDriver driver){ super(driver);}
 
-    public BlousesPage shouldOpenBlousesSubCategory(){
+    public BlousesPage openBlousesSubCategory(){
         moseHover(women);
         moseHover(blouses);
         clickObject(blouses);
+        log.info("Successfully opened 'Blouses' category");
         return new BlousesPage(driver);
     }
 }
